@@ -23,18 +23,75 @@
 	</script>
 </div>
 
-<!--<div class="container">-->
-	<!--<br>-->
-	<!--<div class="well text-center">-->
-		<!--<h1>{{ vm.title }}</h1>-->
-		<!--<h3>{{ vm.version }}</h3>-->
-		<!--<p>This is a template for a simple home screen website. Use it as a starting point to create something more unique.</p>-->
-		<!--<code>app/modules/home/home.html</code>-->
-		<!--<hr>-->
-    <!--<h1>Features</h1>-->
-		<!--<ul class="list-group">-->
-			<!--<li class="list-group-item" ng-repeat="item in vm.listFeatures">{{item.feature}}</li>-->
-		<!--</ul>-->
-		<!--<p><a href="http://www.github.com/newaeonweb/generator-angm" class="btn btn-primary" role="button">Learn more »</a></p>-->
-	<!--</div>-->
-<!--</div>-->
+<!-- Custom Modal -->
+<div ng-controller="ModalCustomCtrl">
+	<div sytle="width:600px;margin:0 auto;text-align:center">
+		<button ng-click="toggleModal()" class="btn btn-default">Open modal custom Directive</button>
+	</div>
+
+	<!-- Modal from Custom Directive -->
+	<modal title="Modal Custom Directive" visible="showModal">
+		Content Modal from:<b>Custom Directive</b>
+	</modal>
+</div>
+
+<!-- Bootstrap Tab -->
+<div style="width:600px;margin:20px auto;">
+	<h1>Test123</h1>
+	<div ng-controller="BootstrapTabCtrl">
+		<tabset>
+			<tab ng-repeat="tab in tabs" heading="{{tab.title}}"
+				 active="tab.active" disabled="tab.disabled">
+				{{tab.content}}
+			</tab>
+		</tabset>
+	</div>
+</div>
+
+
+<!-- Custom Bootstrap Tab -->
+<div style="width:600px;margin:20px auto;">
+	<custom-tabs>
+		<pane title="Custom Tab One">
+			<div>Tab One Content.</div>
+		</pane>
+		<pane title="Custom Tab Two">
+			<div>Tab Two Content.</div>
+		</pane>
+		<pane title="Custom Tab Three">
+			<div>Tab Three Content.</div>
+		</pane>
+	</custom-tabs>
+</div>
+
+
+<!-- Bootstrap Accordion -->
+<div style="width:600px;margin:20px auto;">
+	<div ng-controller="AccordionCtrl">
+		<accordion close-others="oneAtATime">
+			<accordion-group heading="{{group.title}}" ng-repeat="group in groups">
+				{{group.content}}
+			</accordion-group>
+		</accordion>
+	</div>
+</div>
+
+<!-- Overhide the default bootstrap template -->
+<script type="text/ng-template"
+		id="template/accordion/accordion-group.html">
+		<div class="accordion-group">
+			<div class="accordion-panel">
+				<div class="accordion-heading">
+					<h4 class="accordion-title">
+						<a class="accordion-toggle" ng-click="isOpen = !isOpen"
+						   accordion-transclude="heading">
+							{{heading}}
+						</a>
+					</h4>
+				</div>
+				<div class="accordion-body" collapse="!isOpen">
+					<div class="accordion-inner" ng-transclude></div>
+				</div>
+			</div>
+		</div>
+</script>
